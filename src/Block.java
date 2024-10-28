@@ -36,7 +36,7 @@ public class Block {
         return Base64.getEncoder().encodeToString(hash);
     }
 
-    private String calculateBlockHash() throws NoSuchAlgorithmException {
+    public String calculateBlockHash() throws NoSuchAlgorithmException {
         String data = version + prevHash + timestamp + difficultyTarget + nonce + merkleRoot;
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(data.getBytes(StandardCharsets.UTF_8));
@@ -70,5 +70,13 @@ public class Block {
                 ", blockHash='" + blockHash + '\'' +
                 ", signature='" + signature + '\'' +
                 '}';
+    }
+
+    public void setNonce(int nonce) {
+        this.nonce = nonce;
+    }
+
+    public int getNonce() {
+        return nonce;
     }
 }
